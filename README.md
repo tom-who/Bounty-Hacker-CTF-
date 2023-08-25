@@ -6,34 +6,17 @@ Our first step is to always begin with enumeration, we can use alot of tools to 
 
 `┌──(--㉿kali)-[~]
 └─$ nmap 10.10.81.164 -sV -sC
-Starting Nmap 7.93 ( https://nmap.org ) at 2023-08-25 13:02 EDT
-Nmap scan report for 10.10.81.164
-Not shown: 967 filtered tcp ports (no-response), 30 closed tcp ports (conn-refused)
+`
+`
 PORT   STATE SERVICE VERSION
 21/tcp open  ftp     vsftpd 3.0.3
-| ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_Can't get directory listing: TIMEOUT
-| ftp-syst: 
-|   STAT: 
-| FTP server status:
-|      Connected to ::ffff:10.18.49.141
-|      Logged in as ftp
-|      TYPE: ASCII
-|      No session bandwidth limit
-|      Session timeout in seconds is 300
-|      Control connection is plain text
-|      Data connections will be plain text
-|      At session startup, client count was 3
-|      vsFTPd 3.0.3 - secure, fast, stable
-|_End of status
+`
+`
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   2048 dcf8dfa7a6006d18b0702ba5aaa6143e (RSA)
-|   256 ecc0f2d91e6f487d389ae3bb08c40cc9 (ECDSA)
-|_  256 a41a15a5d4b1cf8f16503a7dd0d813c2 (ED25519)
-80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
-|_http-title: Site doesn't have a title (text/html).
-|_http-server-header: Apache/2.4.18 (Ubuntu)`
+`
+`
+80/tcp open  http    Apache httpd 2.4.18 
+`
 
 From this Nmap scan we see that there are 3 ports open: port 21, 22 and 80
 Importantly, we see that on port 21 there is 'Anonymous FTP login allowed' (This means that we can login as user anonymous and provide no password)
