@@ -13,7 +13,7 @@ Our first step is to always begin with enumeration, we can use alot of tools to 
 `
 PORT   STATE SERVICE VERSION
 21/tcp open  ftp     vsftpd 3.0.3
-`
+
 
 
 
