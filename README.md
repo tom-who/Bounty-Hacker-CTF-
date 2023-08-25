@@ -65,7 +65,7 @@ Use `mget *` as a means to get all files to your local device then exit the ftp 
 
 ### SSH Access
 
-The contents of task.txt contain another person, Lin, but locks.txt is more useful
+The contents of task.txt contains another person, Lin (*another username*) but locks.txt is more useful
 It is a file containing presumably passwords, and with the list of potential usernames we collected earlier from the website and Lin from task.txt, its time to commence a brute force attack
 
 To do this attack we must make a file containing the usernames, which for convenience sake we will call users.txt and then write our command
@@ -77,7 +77,7 @@ We now have a username and password
 
 ### Privelege Escalation
 
-`ssh lin@<machine_ip>`
+`ssh <user>@<machine_ip>`
 
 Logging on we see the first flag, which you can get yourself
 But we are not done, we need to get the root flag, which we dont have access to, we need to escalate our privelleges
